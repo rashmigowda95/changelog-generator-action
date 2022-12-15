@@ -6,6 +6,7 @@ import subprocess
 import time
 import sys
 import os
+from jira import JIRA, JIRAError
 from github import Github
 
 
