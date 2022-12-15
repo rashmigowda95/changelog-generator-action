@@ -11,6 +11,48 @@ from datetime import datetime
 from github import Github
 
 
+# ~^~^~^~ user config ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
+
+# point to your jira installation
+jira_server = 'https://jira.yourdomain.com'
+
+"""
+configure authentication, see jira module docs for more auth modes
+https://jira.readthedocs.io/en/latest/examples.html#authentication
+"""
+jira = JIRA(server=(jira_server), basic_auth=('changelogbot', 'cryp71cp455w0rd'))
+
+changelogFilename = "CHANGELOG.md"
+
+# configure possible issue types
+bugTypes = ['Bug', 'InstaBug']
+featureTypes = ['Story', 'Task']
+refactoringTypes = ['Refactoring']
+ignoredTypes = ['Sub-task']
+
+# if you building different types (alpha,beta,production) and
+# want to differ in the changelog, specify default here and/or
+# pass it as first argument
+buildType = "Release"
+if len(sys.argv) > 1:
+    buildType = sys.argv[1]
+
+# generate markdown with hyperlinks
+render_link = False
+
+# ^-^-^ END user config ^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^
+
+
+project_format = r'[A-Z][A-Z\d]+'
+git_cmd = 'git log $(git describe --abbrev=0 --tag)..HEAD --format="%s"'
+
+projects = []
+issues = []
+added = []
+bugs = []
+
+
+
 def github_login(ACCESS_TOKEN, REPO_NAME):
     '''
     Use Pygithub to login to the repository
