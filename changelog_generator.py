@@ -282,6 +282,8 @@ def overwrite_changelog(commits):
 
 def main():
     ACCESS_TOKEN = get_inputs('ACCESS_TOKEN')
+    server = get_inputs('jira_server')
+    basic_auth = get_inputs('username', 'password')
     REPO_NAME = get_inputs('REPO_NAME')
     PATH = get_inputs('PATH')
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
