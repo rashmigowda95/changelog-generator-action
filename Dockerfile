@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8
 RUN apt-get update -y
 RUN apt-get install -y git
 RUN pip install jira
