@@ -14,13 +14,13 @@ from github import Github
 # ~^~^~^~ user config ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
 
 # point to your jira installation
-jira_server = 'https://jira.yourdomain.com'
+jira_server = 'https://rashmingowda95.atlassian.net'
 
 """
 configure authentication, see jira module docs for more auth modes
 https://jira.readthedocs.io/en/latest/examples.html#authentication
 """
-jira = JIRA(server=(jira_server), basic_auth=('changelogbot', 'cryp71cp455w0rd'))
+jira = JIRA(server=(jira_server), basic_auth=('rashmingowda95', 'RAMYAsn.90'))
 
 changelogFilename = "CHANGELOG.md"
 
@@ -282,8 +282,6 @@ def overwrite_changelog(commits):
 
 def main():
     ACCESS_TOKEN = get_inputs('ACCESS_TOKEN')
-    server = get_inputs('jira_server')
-    basic_auth = get_inputs('username', 'password')
     REPO_NAME = get_inputs('REPO_NAME')
     PATH = get_inputs('PATH')
     COMMIT_MESSAGE = get_inputs('COMMIT_MESSAGE')
